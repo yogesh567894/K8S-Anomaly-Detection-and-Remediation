@@ -72,3 +72,22 @@
 2025-04-15 22:39:54,206 - k8s-multi-agent - INFO - Executing remediation for pod crash-deployment-f6689457d-rk7q7: restart_deployment
 2025-04-15 22:39:54,215 - k8s-multi-agent - INFO - Would restart deployment for pod default/crash-deployment-f6689457d-rk7q7
 2025-04-15 22:40:11,101 - k8s-multi-agent - INFO - Received termination signal, shutting down...
+2025-04-16 10:38:16,455 - k8s-multi-agent - INFO - Loaded Kubernetes config from default location
+2025-04-16 10:38:16,457 - k8s-multi-agent - INFO - Initializing with NVIDIA API
+2025-04-16 10:38:16,926 - nvidia_llm - INFO - NVIDIA LLM client initialized
+2025-04-16 10:38:16,926 - k8s-multi-agent - INFO - Successfully initialized NVIDIA API via custom wrapper
+2025-04-16 10:38:16,927 - k8s-multi-agent - INFO - LLM initialization complete. Provider: nvidia
+2025-04-16 10:38:16,927 - k8s-multi-agent - INFO - LLM initialization complete. Provider: nvidia
+2025-04-16 10:38:16,937 - k8s-multi-agent - INFO - Loaded Kubernetes config from default location
+2025-04-16 10:38:16,968 - k8s-multi-agent - INFO - Collected metrics for 1 pods in default namespace
+2025-04-16 10:38:16,969 - k8s-multi-agent - INFO - Collected metrics from 1 pods
+2025-04-16 10:38:16,970 - k8s-multi-agent - INFO - Detected anomaly in pod crash-deployment-f6689457d-rk7q7: pod_failure
+2025-04-16 10:38:21,756 - k8s-multi-agent - INFO - Executing remediation for pod crash-deployment-f6689457d-rk7q7: restart_pod
+2025-04-16 10:38:21,813 - k8s-multi-agent - INFO - Successfully restarted pod default/crash-deployment-f6689457d-rk7q7
+2025-04-16 10:39:25,298 - k8s-multi-agent - WARNING - Error fetching events for pod crash-deployment-f6689457d-bmg2b: '>' not supported between instances of 'datetime.datetime' and 'NoneType'
+2025-04-16 10:39:25,298 - k8s-multi-agent - INFO - Collected metrics for 1 pods in default namespace
+2025-04-16 10:39:25,299 - k8s-multi-agent - INFO - Collected metrics from 1 pods
+2025-04-16 10:41:10,082 - k8s-multi-agent - WARNING - Error fetching events for pod crash-deployment-f6689457d-bmg2b: '>' not supported between instances of 'datetime.datetime' and 'NoneType'
+2025-04-16 10:41:10,082 - k8s-multi-agent - INFO - Collected metrics for 1 pods in default namespace
+2025-04-16 10:41:10,083 - k8s-multi-agent - INFO - Collected metrics from 1 pods
+2025-04-16 10:41:25,536 - k8s-multi-agent - INFO - Shutting down Kubernetes multi-agent system.

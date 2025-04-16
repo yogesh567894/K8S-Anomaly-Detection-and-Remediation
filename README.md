@@ -8,10 +8,12 @@ A comprehensive platform for monitoring Kubernetes clusters, detecting anomalies
 - [System Architecture](#system-architecture)
 - [Components](#components)
 - [Installation](#installation)
+- [Setting Up Kubernetes Locally](#setting-up-kubernetes-locally)
 - [Usage Guide](#usage-guide)
   - [Basic Usage](#basic-usage)
   - [Advanced Configuration](#advanced-configuration)
   - [Command Line Options](#command-line-options)
+- [Multi-Agent System](#multi-agent-system)
 - [Agent Modes](#agent-modes)
 - [Metrics Collection](#metrics-collection)
 - [Anomaly Detection](#anomaly-detection)
@@ -120,6 +122,62 @@ Interactive agent that proposes and executes corrective actions:
    python dataset-generator.py --test
    ```
 
+## 🌐 Setting Up Kubernetes Locally
+
+To run this system with a local Kubernetes environment, follow these steps:
+
+### 1. Starting Minikube
+
+Minikube is a tool that lets you run Kubernetes locally. To start a Minikube cluster:
+
+```bash
+minikube start
+```
+
+This command creates a local Kubernetes cluster with a single node. You can customize the resources with:
+
+```bash
+minikube start --cpus=4 --memory=8192 --driver=docker
+```
+
+### 2. Setting Up Prometheus for Monitoring
+
+The system works best with Prometheus for metrics collection. To set up Prometheus:
+
+1. **Install Prometheus using Helm**:
+   ```bash
+   # Add Prometheus Helm repository
+   helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+   helm repo update
+
+   # Create a monitoring namespace
+   kubectl create namespace monitoring
+   
+   # Install Prometheus stack
+   helm install prometheus prometheus-community/kube-prometheus-stack --namespace monitoring
+   ```
+
+2. **Set up port-forwarding for Prometheus**:
+   ```bash
+   kubectl port-forward -n monitoring svc/prometheus-kube-prometheus-prometheus 9090:9090
+   ```
+   
+   This command makes Prometheus accessible at `http://localhost:9090`
+
+3. **Verify Prometheus is working**:
+   - Open `http://localhost:9090` in your browser
+   - You should see the Prometheus UI
+
+### 3. Deploy Test Applications (Optional)
+
+To generate meaningful metrics, deploy some test applications to your cluster:
+
+```bash
+kubectl apply -f config/test-deployments.yaml
+```
+
+This will create test pods that generate variable workloads for monitoring.
+
 ## 🚀 Usage Guide
 
 ### Basic Usage
@@ -221,6 +279,48 @@ Options:
   --dry-run                Show recommendations without applying changes
   --auto-approve           Automatically approve remediation actions (USE WITH CAUTION)
 ```
+
+## 🤖 Multi-Agent System
+
+The core of this platform is the Multi-Agent System, which orchestrates all monitoring and remediation functions.
+
+### Running the Multi-Agent System
+
+The `k8s_multi_agent_system.py` script provides a unified interface to run all agents together:
+
+```bash
+python k8s_multi_agent_system.py
+```
+
+This comprehensive script:
+- Coordinates data collection, analysis, and remediation
+- Manages communication between agents
+- Maintains a central state for the entire system
+- Provides a unified CLI for controlling all system aspects
+
+### Configuration Options
+
+The Multi-Agent System supports all configuration options from individual components, plus:
+
+```bash
+python k8s_multi_agent_system.py [OPTIONS]
+
+Options:
+  --config-file TEXT      Path to a YAML configuration file
+  --agent-mode TEXT       Operation mode: full, monitoring, or remediation
+  --log-level TEXT        Logging level: debug, info, warning, error
+  --ui                    Enable web UI dashboard (experimental)
+  --openai-api-key TEXT   OpenAI API key for LLM integration
+```
+
+### Advanced Features
+
+The Multi-Agent System includes several advanced features:
+
+1. **Agent Coordination**: Intelligent coordination between all agents
+2. **Unified State Management**: Centralized state tracking across all agents
+3. **Dynamic Reconfiguration**: Adjust system parameters without restarting
+4. **Integrated Dashboard**: Web UI for monitoring system status (when --ui is enabled)
 
 ## 🔄 Agent Modes
 
