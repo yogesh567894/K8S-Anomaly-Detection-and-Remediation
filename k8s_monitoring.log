@@ -1,0 +1,123 @@
+2025-04-15 22:41:14,891 - k8s-monitoring - INFO - Running both generator and agent
+2025-04-15 22:41:15,116 - k8s-monitoring - INFO - Starting dataset generator with prometheus_url=http://localhost:8082, namespace=monitoring, output_file=pod_metrics.csv, interval=5s
+2025-04-15 22:41:17,149 - k8s-monitoring - INFO - Starting agent with input_file=pod_metrics.csv, watch_interval=10s, alert_threshold=0.7
+2025-04-15 22:41:17,151 - k8s-monitoring - ERROR - Error in agent: No module named 'dataset_generator_agent'
+2025-04-15 22:41:26,914 - k8s-monitoring - INFO - Dataset generator received interrupt
+2025-04-15 22:41:27,042 - k8s-monitoring - INFO - Received termination signal, shutting down...
+2025-04-15 22:41:27,042 - k8s-monitoring - INFO - All processes terminated, exiting
+2025-04-15 22:45:38,939 - k8s-monitoring - INFO - Running both generator and agent
+2025-04-15 22:45:39,200 - k8s-monitoring - INFO - Starting dataset generator with prometheus_url=http://localhost:8082, namespace=monitoring, output_file=pod_metrics.csv, interval=5s
+2025-04-15 22:45:41,227 - k8s-monitoring - INFO - Starting agent with input_file=pod_metrics.csv, watch_interval=10s, alert_threshold=0.7
+2025-04-15 22:45:41,229 - k8s-monitoring - INFO - Loading agent from file: C:\k8finale\K8S\src\agents\dataset_generator_agent.py
+2025-04-15 22:45:41,229 - k8s-monitoring - INFO - File exists: True
+2025-04-15 22:46:14,667 - k8s-monitoring - INFO - Dataset generator module loaded and running
+2025-04-15 22:46:14,675 - k8s-monitoring - INFO - Agent received interrupt
+2025-04-15 22:47:17,336 - k8s-monitoring - INFO - Running both generator and agent
+2025-04-15 22:47:17,581 - k8s-monitoring - INFO - Starting dataset generator with prometheus_url=http://localhost:8082, namespace=monitoring, output_file=pod_metrics.csv, interval=5s
+2025-04-15 22:47:19,688 - k8s-monitoring - INFO - Starting agent with input_file=pod_metrics.csv, watch_interval=10s, alert_threshold=0.7
+2025-04-15 22:47:19,688 - k8s-monitoring - INFO - Loading agent from file: C:\k8finale\K8S\src\agents\dataset_generator_agent.py
+2025-04-15 22:47:19,689 - k8s-monitoring - INFO - File exists: True
+2025-04-15 22:47:20,688 - k8s-monitoring - INFO - Successfully loaded DatasetGeneratorAgent class
+2025-04-15 22:47:20,688 - dataset-generator-agent - INFO - Initialized DatasetGeneratorAgent with input_file=pod_metrics.csv, watch_interval=10s, alert_threshold=0.7
+2025-04-15 22:47:20,689 - k8s-monitoring - INFO - Agent started
+2025-04-15 22:47:20,729 - dataset-generator-agent - INFO - Read 21 new rows from pod_metrics.csv
+2025-04-15 22:47:38,393 - k8s-monitoring - INFO - Agent received interrupt
+2025-04-15 22:47:38,393 - k8s-monitoring - INFO - Dataset generator module loaded and running
+2025-04-15 22:47:38,845 - k8s-monitoring - INFO - Received termination signal, shutting down...
+2025-04-15 22:47:38,846 - k8s-monitoring - INFO - All processes terminated, exiting
+2025-04-15 22:47:51,832 - k8s-monitoring - INFO - Dataset generator received interrupt
+2025-04-15 22:47:52,053 - k8s-monitoring - INFO - Received termination signal, shutting down...
+2025-04-15 22:47:52,054 - k8s-monitoring - INFO - All processes terminated, exiting
+2025-04-15 22:51:26,452 - k8s-monitoring - INFO - Running both generator and agent
+2025-04-15 22:51:26,631 - k8s-monitoring - INFO - Starting dataset generator with prometheus_url=http://localhost:8082, namespace=monitoring, output_file=pod_metrics.csv, interval=5s
+2025-04-15 22:51:28,638 - k8s-monitoring - INFO - Starting agent with input_file=pod_metrics.csv, watch_interval=10s, alert_threshold=0.7
+2025-04-15 22:51:28,638 - k8s-monitoring - INFO - Using agent module from: C:\k8finale\K8S\src\agents\dataset_generator_agent.py
+2025-04-15 22:51:52,334 - k8s-monitoring - INFO - Dataset generator module loaded and running
+2025-04-15 22:51:52,335 - k8s-monitoring - INFO - Agent received interrupt
+2025-04-15 22:52:00,114 - k8s-monitoring - INFO - Dataset generator received interrupt
+2025-04-15 22:52:00,270 - k8s-monitoring - INFO - Received termination signal, shutting down...
+2025-04-15 22:52:00,270 - k8s-monitoring - INFO - All processes terminated, exiting
+2025-04-15 22:52:37,682 - k8s-monitoring - INFO - Running in agent-only mode
+2025-04-15 22:52:37,848 - k8s-monitoring - INFO - Starting agent with input_file=pod_metrics.csv, watch_interval=10s, alert_threshold=0.7
+2025-04-15 22:52:37,848 - k8s-monitoring - INFO - Using agent module from: C:\k8finale\K8S\src\agents\dataset_generator_agent.py
+2025-04-15 22:52:46,368 - k8s-monitoring - ERROR - Error in agent: [Errno 2] Unable to synchronously open file (unable to open file: name = 'lstm_anomaly_model.h5', errno = 2, error message = 'No such file or directory', flags = 0, o_flags = 0)
+2025-04-15 22:52:47,036 - k8s-monitoring - INFO - Monitoring stopped
+2025-04-15 22:53:38,163 - k8s-monitoring - INFO - Running in agent-only mode
+2025-04-15 22:53:38,372 - k8s-monitoring - INFO - Starting agent with input_file=pod_metrics.csv, watch_interval=10s, alert_threshold=0.7
+2025-04-15 22:53:38,372 - k8s-monitoring - INFO - Using agent module from: C:\k8finale\K8S\src\agents\dataset_generator_agent.py
+2025-04-15 22:53:47,885 - absl - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-15 22:53:48,184 - anomaly_prediction - INFO - Loaded model, scaler, and threshold: 0.9972
+2025-04-15 22:53:48,187 - dataset-generator-agent - INFO - Initialized DatasetGeneratorAgent with input_file=pod_metrics.csv, watch_interval=10s, alert_threshold=0.7
+2025-04-15 22:53:48,187 - k8s-monitoring - INFO - Agent started
+2025-04-15 22:53:48,201 - dataset-generator-agent - INFO - Read 63 new rows from pod_metrics.csv
+2025-04-15 22:53:49,447 - dataset-generator-agent - WARNING - Anomaly detected in pod prometheus-prometheus-node-exporter-2mjqg: type=network_issue, probability=0.9982
+2025-04-15 22:53:49,534 - dataset-generator-agent - INFO - Potential issue for alertmanager-prometheus-kube-prometheus-alertmanager-0: probability=0.9479, recommendation: 1. Check pod logs for error messages
+2. Verify pod configuration and dependencies
+2. Check node health and resource availability
+2025-04-15 22:53:49,534 - dataset-generator-agent - INFO - Potential issue for prometheus-grafana-995866d9b-42rps: probability=0.9284, recommendation: 1. Check pod logs for error messages
+2. Verify pod configuration and dependencies
+2. Check node health and resource availability
+2025-04-15 22:53:49,535 - dataset-generator-agent - INFO - Potential issue for prometheus-kube-prometheus-operator-565cbd8649-r5cgm: probability=0.9173, recommendation: 1. Check pod logs for error messages
+2. Verify pod configuration and dependencies
+2. Check node health and resource availability
+2025-04-15 22:53:49,535 - dataset-generator-agent - INFO - Potential issue for prometheus-kube-state-metrics-849c746cf5-hm27j: probability=0.9485, recommendation: 1. Check pod logs for error messages
+2. Verify pod configuration and dependencies
+2. Check node health and resource availability
+2025-04-15 22:53:49,535 - dataset-generator-agent - INFO - Potential issue for prometheus-prometheus-kube-prometheus-prometheus-0: probability=0.9319, recommendation: 1. Check pod logs for error messages
+2. Verify pod configuration and dependencies
+2. Check node health and resource availability
+2025-04-15 22:53:49,536 - dataset-generator-agent - WARNING - Insight for prometheus-prometheus-node-exporter-2mjqg: network_issue anomaly, severity=Critical, recommendation: 1. Check network policies and ensure proper connectivity
+2. Verify DNS resolution within the cluster
+2. Check for network congestion or bandwidth issues
+2025-04-15 22:53:49,536 - dataset-generator-agent - INFO - Potential issue for test-metrics-pod: probability=0.9291, recommendation: 1. Check pod logs for error messages
+2. Verify pod configuration and dependencies
+2. Check node health and resource availability
+2025-04-15 22:56:22,103 - k8s-monitoring - INFO - Agent received interrupt
+2025-04-15 22:56:22,926 - k8s-monitoring - INFO - Received termination signal, shutting down...
+2025-04-15 22:56:22,926 - k8s-monitoring - INFO - All processes terminated, exiting
+2025-04-15 22:59:21,623 - k8s-monitoring - INFO - Running in generator-only mode
+2025-04-15 22:59:21,831 - k8s-monitoring - INFO - Starting dataset generator with prometheus_url=http://localhost:8082, namespace=monitoring, output_file=pod_metrics.csv, interval=5s
+2025-04-15 22:59:37,635 - k8s-monitoring - INFO - Dataset generator module loaded and running
+2025-04-15 22:59:42,250 - k8s-monitoring - INFO - Dataset generator received interrupt
+2025-04-15 22:59:42,409 - k8s-monitoring - INFO - Received termination signal, shutting down...
+2025-04-15 22:59:42,410 - k8s-monitoring - INFO - All processes terminated, exiting
+2025-04-16 00:46:08,074 - k8s-monitoring - INFO - Running in dataset-agent-only mode
+2025-04-16 00:46:08,743 - k8s-monitoring - INFO - Starting dataset agent with input_file=C:\k8finale\K8S\pod_metrics.csv, watch_interval=5s, alert_threshold=0.7
+2025-04-16 00:46:08,744 - k8s-monitoring - INFO - Using dataset agent module from: C:\k8finale\K8S\src\agents\dataset_generator_agent.py
+2025-04-16 00:46:08,798 - anomaly-detection-agent - INFO - Logging configured to file: C:\k8finale\K8S\logs\anomaly_detection_agent.log
+2025-04-16 00:46:16,174 - absl - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-16 00:46:16,211 - anomaly_prediction - INFO - Loaded model, scaler, and threshold: 0.9972
+2025-04-16 00:46:16,211 - anomaly-detection-agent - INFO - Successfully imported anomaly_prediction from C:\k8finale\K8S\models
+2025-04-16 00:46:17,465 - anomaly-detection-agent - INFO - Successfully imported NvidiaLLM
+2025-04-16 00:46:17,526 - absl - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-16 00:46:17,532 - anomaly_prediction - INFO - Loaded model, scaler, and threshold: 0.9972
+2025-04-16 00:46:17,534 - anomaly-detection-agent - ERROR - Failed to initialize NVIDIA LLM: NVIDIA API key not provided and NVIDIA_API_KEY env var not set
+2025-04-16 00:46:17,534 - anomaly-detection-agent - INFO - Initialized AnomalyDetectionAgent with alert_threshold=0.7, data_dir=C:\k8finale\K8S\data, use_llm=False
+2025-04-16 00:46:18,087 - anomaly-detection-agent - INFO - Model test successful: {'predicted_anomaly': 1, 'anomaly_probability': 0.9997768402099609, 'anomaly_type': 'unknown'}
+2025-04-16 00:46:18,088 - dataset-generator-agent - INFO - Successfully initialized AnomalyDetectionAgent
+2025-04-16 00:46:18,089 - dataset-generator-agent - INFO - Initialized DatasetGeneratorAgent with input_file=C:\k8finale\K8S\pod_metrics.csv, watch_interval=5s, alert_threshold=0.7
+2025-04-16 00:46:18,089 - k8s-monitoring - INFO - Dataset agent started
+2025-04-16 00:46:18,095 - dataset-generator-agent - INFO - Read 84 new rows from C:\k8finale\K8S\pod_metrics.csv
+2025-04-16 00:48:05,484 - k8s-monitoring - INFO - Dataset agent received interrupt
+2025-04-16 00:48:06,476 - k8s-monitoring - INFO - Received termination signal, shutting down...
+2025-04-16 00:48:06,477 - k8s-monitoring - INFO - All processes terminated, exiting
+2025-04-16 00:48:26,599 - k8s-monitoring - INFO - Running in dataset-agent-only mode
+2025-04-16 00:48:27,258 - k8s-monitoring - INFO - Starting dataset agent with input_file=C:\k8finale\K8S\pod_metrics.csv, watch_interval=10s, alert_threshold=0.7
+2025-04-16 00:48:27,259 - k8s-monitoring - INFO - Using dataset agent module from: C:\k8finale\K8S\src\agents\dataset_generator_agent.py
+2025-04-16 00:48:27,301 - anomaly-detection-agent - INFO - Logging configured to file: C:\k8finale\K8S\logs\anomaly_detection_agent.log
+2025-04-16 00:48:31,832 - absl - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-16 00:48:31,859 - anomaly_prediction - INFO - Loaded model, scaler, and threshold: 0.9972
+2025-04-16 00:48:31,860 - anomaly-detection-agent - INFO - Successfully imported anomaly_prediction from C:\k8finale\K8S\models
+2025-04-16 00:48:32,741 - anomaly-detection-agent - INFO - Successfully imported NvidiaLLM
+2025-04-16 00:48:32,819 - absl - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-16 00:48:32,825 - anomaly_prediction - INFO - Loaded model, scaler, and threshold: 0.9972
+2025-04-16 00:48:32,825 - anomaly-detection-agent - ERROR - Failed to initialize NVIDIA LLM: NVIDIA API key not provided and NVIDIA_API_KEY env var not set
+2025-04-16 00:48:32,827 - anomaly-detection-agent - INFO - Initialized AnomalyDetectionAgent with alert_threshold=0.7, data_dir=C:\k8finale\K8S\data, use_llm=False
+2025-04-16 00:48:33,180 - anomaly-detection-agent - INFO - Model test successful: {'predicted_anomaly': 1, 'anomaly_probability': 0.9997768402099609, 'anomaly_type': 'unknown'}
+2025-04-16 00:48:33,181 - dataset-generator-agent - INFO - Successfully initialized AnomalyDetectionAgent
+2025-04-16 00:48:33,181 - dataset-generator-agent - INFO - Initialized DatasetGeneratorAgent with input_file=C:\k8finale\K8S\pod_metrics.csv, watch_interval=10s, alert_threshold=0.7
+2025-04-16 00:48:33,181 - k8s-monitoring - INFO - Dataset agent started
+2025-04-16 00:48:33,186 - dataset-generator-agent - INFO - Read 84 new rows from C:\k8finale\K8S\pod_metrics.csv
+2025-04-16 00:48:43,916 - k8s-monitoring - INFO - Dataset agent received interrupt
+2025-04-16 00:48:44,765 - k8s-monitoring - INFO - Received termination signal, shutting down...
+2025-04-16 00:48:44,765 - k8s-monitoring - INFO - All processes terminated, exiting

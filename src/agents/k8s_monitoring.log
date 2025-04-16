@@ -1,0 +1,5 @@
+2025-04-16 00:43:26,941 - k8s-monitoring - INFO - Running in dataset-agent-only mode
+2025-04-16 00:43:27,623 - k8s-monitoring - INFO - Starting dataset agent with input_file=pod_metrics.csv, watch_interval=5s, alert_threshold=0.7
+2025-04-16 00:43:27,624 - k8s-monitoring - INFO - Using dataset agent module from: C:\k8finale\K8S\src\agents\src\agents\dataset_generator_agent.py
+2025-04-16 00:43:27,624 - k8s-monitoring - ERROR - Error in dataset agent: [Errno 2] No such file or directory: 'C:\\k8finale\\K8S\\src\\agents\\src\\agents\\dataset_generator_agent.py'
+2025-04-16 00:43:27,725 - k8s-monitoring - INFO - Monitoring stopped
