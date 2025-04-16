@@ -99,7 +99,9 @@ Interactive agent that proposes and executes corrective actions:
    cd kubernetes-monitoring
    ```
 
-2. Create and activate a virtual environment (recommended):
+2. Virtual Environment Setup:
+
+   #### Option 1: Create a new virtual environment
    ```bash
    python -m venv .venv
    # On Windows:
@@ -108,7 +110,33 @@ Interactive agent that proposes and executes corrective actions:
    source .venv/bin/activate
    ```
 
-3. Install dependencies:
+   #### Option 2: Download pre-configured virtual environment
+   If you prefer to use the pre-configured virtual environment:
+   
+   1. Download the .venv archive from the project releases:
+   ```bash
+   # Using curl
+   curl -L https://github.com/yourusername/kubernetes-monitoring/releases/download/v1.0.0/venv-package.zip -o venv-package.zip
+   
+   # Or using wget
+   wget https://github.com/yourusername/kubernetes-monitoring/releases/download/v1.0.0/venv-package.zip
+   ```
+   
+   2. Extract the archive:
+   ```bash
+   unzip venv-package.zip
+   ```
+   
+   3. Activate the virtual environment:
+   ```bash
+   # On Windows:
+   .venv\Scripts\activate
+   
+   # On Linux/Mac:
+   source .venv/bin/activate
+   ```
+
+3. Install dependencies (if creating a new environment):
    ```bash
    pip install -r requirements.txt
    ```
@@ -121,6 +149,25 @@ Interactive agent that proposes and executes corrective actions:
    ```bash
    python dataset-generator.py --test
    ```
+
+### Verifying Virtual Environment Setup
+
+After activating the virtual environment, you should see a change in your command prompt indicating the environment is active:
+
+```
+# Windows example:
+(.venv) C:\path\to\kubernetes-monitoring>
+
+# Linux/Mac example:
+(.venv) user@hostname:~/kubernetes-monitoring$
+```
+
+You can verify the installed dependencies with:
+```bash
+pip list
+```
+
+This should show all the required packages listed in `requirements.txt`.
 
 ## 🌐 Setting Up Kubernetes Locally
 
@@ -321,6 +368,301 @@ The Multi-Agent System includes several advanced features:
 2. **Unified State Management**: Centralized state tracking across all agents
 3. **Dynamic Reconfiguration**: Adjust system parameters without restarting
 4. **Integrated Dashboard**: Web UI for monitoring system status (when --ui is enabled)
+
+### Creating the Multi-Agent System File
+
+If you don't have the `k8s_multi_agent_system.py` file, you can create it with the following template:
+
+```python
+#!/usr/bin/env python3
+"""
+Kubernetes Multi-Agent System
+A unified orchestration system for Kubernetes monitoring and remediation agents.
+
+This script provides a central interface for running all monitoring and 
+remediation agents together with coordinated communication.
+"""
+
+import os
+import sys
+import time
+import argparse
+import logging
+import signal
+import yaml
+from multiprocessing import Process, Event
+from typing import Dict, List, Any, Optional
+
+# Set up logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler(),
+        logging.FileHandler('k8s_multi_agent.log')
+    ]
+)
+logger = logging.getLogger("k8s-multi-agent")
+
+# Import local components
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+try:
+    from src.agents.dataset_generator_agent import DatasetGeneratorAgent
+    from src.agents.anomaly_detection_agent import AnomalyDetectionAgent
+except ImportError as e:
+    logger.error(f"Failed to import required modules: {e}")
+    logger.info("Check that you're running from the project root directory")
+    sys.exit(1)
+
+class K8sMultiAgentSystem:
+    """
+    Main class for the Kubernetes Multi-Agent System.
+    Coordinates all monitoring and remediation agents.
+    """
+    
+    def __init__(self, 
+                config_file: Optional[str] = None,
+                agent_mode: str = 'full',
+                log_level: str = 'info',
+                enable_ui: bool = False,
+                openai_api_key: Optional[str] = None):
+        """
+        Initialize the multi-agent system with configuration.
+        
+        Args:
+            config_file: Path to YAML configuration file
+            agent_mode: Operation mode (full, monitoring, remediation)
+            log_level: Logging level (debug, info, warning, error)
+            enable_ui: Whether to enable the web UI dashboard
+            openai_api_key: OpenAI API key for LLM integration
+        """
+        self.agent_mode = agent_mode
+        self.enable_ui = enable_ui
+        self.openai_api_key = openai_api_key
+        
+        # Set log level
+        log_levels = {
+            'debug': logging.DEBUG,
+            'info': logging.INFO,
+            'warning': logging.WARNING,
+            'error': logging.ERROR
+        }
+        logger.setLevel(log_levels.get(log_level.lower(), logging.INFO))
+        
+        # Load configuration
+        self.config = self._load_config(config_file)
+        
+        # Initialize state
+        self.stop_event = Event()
+        self.processes = []
+        
+        logger.info(f"Initialized K8s Multi-Agent System in {agent_mode} mode")
+        if enable_ui:
+            logger.info("Web UI dashboard is enabled")
+    
+    def _load_config(self, config_file: Optional[str]) -> Dict[str, Any]:
+        """Load configuration from YAML file or use defaults"""
+        config = {
+            'dataset_generator': {
+                'output_file': 'pod_metrics.csv',
+                'prometheus_url': 'http://localhost:9090',
+                'namespace': 'default',
+                'interval': 30
+            },
+            'agents': {
+                'watch_interval': 10,
+                'alert_threshold': 0.7
+            },
+            'remediation': {
+                'auto_approve': False,
+                'dry_run': False
+            }
+        }
+        
+        if config_file and os.path.exists(config_file):
+            try:
+                with open(config_file, 'r') as f:
+                    file_config = yaml.safe_load(f)
+                    # Merge configs, with file taking precedence
+                    config = self._deep_merge(config, file_config)
+                logger.info(f"Loaded configuration from {config_file}")
+            except Exception as e:
+                logger.error(f"Failed to load config file: {e}")
+        
+        return config
+    
+    def _deep_merge(self, dict1, dict2):
+        """Recursively merge dict2 into dict1"""
+        for key, value in dict2.items():
+            if key in dict1 and isinstance(dict1[key], dict) and isinstance(value, dict):
+                self._deep_merge(dict1[key], value)
+            else:
+                dict1[key] = value
+        return dict1
+    
+    def start(self):
+        """Start the multi-agent system with all configured components"""
+        logger.info("Starting K8s Multi-Agent System")
+        
+        # Set up signal handling for graceful shutdown
+        signal.signal(signal.SIGINT, self._signal_handler)
+        signal.signal(signal.SIGTERM, self._signal_handler)
+        
+        try:
+            # Start dataset generator if needed
+            if self.agent_mode in ['full', 'monitoring']:
+                self._start_dataset_generator()
+            
+            # Start dataset generator agent if needed
+            if self.agent_mode in ['full', 'monitoring']:
+                self._start_dataset_agent()
+            
+            # Start remediation agent if needed
+            if self.agent_mode in ['full', 'remediation']:
+                self._start_remediation_agent()
+            
+            # Start web UI if enabled
+            if self.enable_ui:
+                self._start_web_ui()
+            
+            # Wait for all processes to finish
+            for process in self.processes:
+                process.join()
+                
+        except Exception as e:
+            logger.error(f"Error in multi-agent system: {e}")
+            self.stop()
+        finally:
+            logger.info("Multi-agent system has stopped")
+    
+    def _start_dataset_generator(self):
+        """Start the dataset generator process"""
+        try:
+            from dataset_generator import main as generator_main
+            
+            logger.info("Starting dataset generator process")
+            generator_process = Process(
+                target=generator_main,
+                args=(),
+                name="DatasetGeneratorProcess"
+            )
+            generator_process.start()
+            self.processes.append(generator_process)
+            logger.info("Dataset generator process started")
+        except Exception as e:
+            logger.error(f"Failed to start dataset generator: {e}")
+    
+    def _start_dataset_agent(self):
+        """Start the dataset generator agent process"""
+        try:
+            logger.info("Starting dataset generator agent")
+            dataset_agent = DatasetGeneratorAgent(
+                input_file=self.config['dataset_generator']['output_file'],
+                watch_interval=self.config['agents']['watch_interval'],
+                alert_threshold=self.config['agents']['alert_threshold'],
+                use_lang_models=bool(self.openai_api_key),
+                openai_api_key=self.openai_api_key
+            )
+            
+            agent_process = Process(
+                target=dataset_agent.run,
+                args=(),
+                name="DatasetAgentProcess"
+            )
+            agent_process.start()
+            self.processes.append(agent_process)
+            logger.info("Dataset generator agent started")
+        except Exception as e:
+            logger.error(f"Failed to start dataset agent: {e}")
+    
+    def _start_remediation_agent(self):
+        """Start the remediation agent process"""
+        try:
+            from run_remediation import main as remediation_main
+            
+            logger.info("Starting remediation agent process")
+            remediation_process = Process(
+                target=remediation_main,
+                args=(),
+                name="RemediationProcess"
+            )
+            remediation_process.start()
+            self.processes.append(remediation_process)
+            logger.info("Remediation agent process started")
+        except Exception as e:
+            logger.error(f"Failed to start remediation agent: {e}")
+    
+    def _start_web_ui(self):
+        """Start the web UI dashboard (experimental)"""
+        try:
+            import flask
+            from flask import Flask, render_template
+            
+            logger.info("Starting web UI dashboard")
+            # Web UI implementation would go here
+            # This is a placeholder
+            logger.info("Web UI started at http://localhost:5000")
+        except ImportError:
+            logger.error("Flask not installed. Install with: pip install flask")
+        except Exception as e:
+            logger.error(f"Failed to start web UI: {e}")
+    
+    def _signal_handler(self, sig, frame):
+        """Handle termination signals"""
+        logger.info(f"Received signal {sig}, shutting down...")
+        self.stop()
+    
+    def stop(self):
+        """Stop all processes and clean up"""
+        logger.info("Stopping all processes")
+        self.stop_event.set()
+        
+        # Terminate all processes
+        for process in self.processes:
+            if process.is_alive():
+                logger.info(f"Terminating {process.name}")
+                process.terminate()
+        
+        # Join processes to ensure they've terminated
+        for process in self.processes:
+            process.join(timeout=5)
+        
+        logger.info("All processes stopped")
+
+def main():
+    """Parse arguments and start the multi-agent system"""
+    parser = argparse.ArgumentParser(
+        description='Run the Kubernetes Multi-Agent System',
+        epilog='Example: python k8s_multi_agent_system.py --agent-mode full'
+    )
+    parser.add_argument('--config-file', type=str,
+                        help='Path to a YAML configuration file')
+    parser.add_argument('--agent-mode', type=str, default='full',
+                        choices=['full', 'monitoring', 'remediation'],
+                        help='Operation mode (default: full)')
+    parser.add_argument('--log-level', type=str, default='info',
+                        choices=['debug', 'info', 'warning', 'error'],
+                        help='Logging level (default: info)')
+    parser.add_argument('--ui', action='store_true',
+                        help='Enable web UI dashboard (experimental)')
+    parser.add_argument('--openai-api-key', type=str,
+                        help='OpenAI API key for LLM integration')
+    
+    args = parser.parse_args()
+    
+    # Create and start the multi-agent system
+    system = K8sMultiAgentSystem(
+        config_file=args.config_file,
+        agent_mode=args.agent_mode,
+        log_level=args.log_level,
+        enable_ui=args.ui,
+        openai_api_key=args.openai_api_key
+    )
+    
+    system.start()
+
+if __name__ == "__main__":
+    main()
 
 ## 🔄 Agent Modes
 
