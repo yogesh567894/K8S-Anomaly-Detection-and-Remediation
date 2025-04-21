@@ -559,3 +559,5 @@ export ANOMALY_THRESHOLD=0.8
 <div>⁂</div>
 
 [^1]: https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/60031456/9b52c43b-848b-4c20-9ad5-cbbcaccb3a18/ARCHITECTURE.md
+#   K 8 S - A n o m a l y - D e t e c t i o n - a n d - R e m e d i a t i o n  
+ 
