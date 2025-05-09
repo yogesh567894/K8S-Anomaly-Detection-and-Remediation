@@ -5,13 +5,44 @@ import json
 import time
 import datetime
 from typing import Dict, Any, Optional, List
-
-# Import our anomaly agent
-from anomaly_agent import process_metrics
+# Import our anomaly detection agent
+from anomaly_detection_agent import AnomalyDetectionAgent
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("k8s_metrics_collector")
+
+# Initialize the anomaly detection agent
+anomaly_agent = AnomalyDetectionAgent()
+
+# Create a wrapper function to match the expected interface
+def process_metrics(metrics_dict):
+    """Process metrics using the anomaly detection agent."""
+    # Create a pod history with a single entry
+    pod_name = metrics_dict.get('Pod Name', 'unknown-pod')
+    pod_history = {pod_name: [metrics_dict]}
+    
+    # Detect anomalies
+    anomalies = anomaly_agent.detect_anomalies(pod_history)
+    
+    # Generate insights
+    insights = anomaly_agent.generate_insights(anomalies)
+    
+    # Convert insights to message objects
+    class Message:
+        def __init__(self, content):
+            self.content = content
+    
+    messages = []
+    if pod_name in insights:
+        for insight in insights[pod_name]:
+            messages.append(Message(insight))
+    
+    # If no insights, add a default message
+    if not messages:
+        messages.append(Message("No anomalies detected"))
+    
+    return messages
 
 def run_kubectl_command(command: List[str]) -> Optional[str]:
     """Run a kubectl command and return the output."""
@@ -42,6 +73,63 @@ def get_pod_metrics(namespace: Optional[str] = None) -> List[Dict[str, Any]]:
     cmd = ["top", "pods"]
     if namespace:
         cmd.extend(["-n", namespace])
+    
+    # Remove the -o json flag as it's not supported by kubectl top
+    output = run_kubectl_command(cmd)
+    if not output:
+        logger.warning("No pod metrics retrieved")
+        return []
+    
+    try:
+        # Parse the text output manually
+        lines = output.strip().split('\n')
+        if len(lines) <= 1:  # Only header or empty
+            return []
+            
+        # Skip the header line
+        header = lines[0].split()
+        metrics = []
+        
+        for line in lines[1:]:
+            parts = line.split()
+            if len(parts) >= 3:  # Name, CPU, Memory at minimum
+                pod_name = parts[0]
+                cpu = parts[1]
+                memory = parts[2]
+                
+                # Convert CPU string (e.g., "15m") to number
+                cpu_value = 0
+                if cpu.endswith("m"):
+                    cpu_value = float(cpu[:-1]) / 1000  # Convert millicores to cores
+                else:
+                    try:
+                        cpu_value = float(cpu)
+                    except ValueError:
+                        cpu_value = 0
+                
+                # Convert memory string (e.g., "15Mi") to number
+                memory_value = 0
+                if memory.endswith("Ki"):
+                    memory_value = float(memory[:-2]) * 1024
+                elif memory.endswith("Mi"):
+                    memory_value = float(memory[:-2]) * 1024 * 1024
+                elif memory.endswith("Gi"):
+                    memory_value = float(memory[:-2]) * 1024 * 1024 * 1024
+                
+                metrics.append({
+                    "metadata": {"name": pod_name},
+                    "containers": [{
+                        "usage": {
+                            "cpu": cpu,
+                            "memory": memory
+                        }
+                    }]
+                })
+        
+        return metrics
+    except Exception as e:
+        logger.error(f"Error parsing kubectl top output: {e}")
+        return []
     cmd.extend(["-o", "json"])
     
     output = run_kubectl_command(cmd)
@@ -362,4 +450,4 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         logger.info("Monitoring stopped by user")
     except Exception as e:
-        logger.error(f"Error in monitoring: {e}") 
+        logger.error(f"Error in monitoring: {e}")
