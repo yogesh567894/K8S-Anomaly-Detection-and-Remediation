@@ -773,3 +773,30 @@
 2025-05-09 21:53:14,563 - k8s-multi-agent - INFO - Executing remediation for pod test-crash-797c4d79d6-5fb98: restart_deployment
 2025-05-09 21:53:14,569 - k8s-multi-agent - INFO - Would restart deployment for pod default/test-crash-797c4d79d6-5fb98
 2025-05-09 21:53:18,191 - k8s-multi-agent - INFO - Shutting down Kubernetes multi-agent system.
+2025-05-10 09:08:48,187 - k8s-multi-agent - INFO - Loaded Kubernetes config from default location
+2025-05-10 09:08:48,188 - k8s-multi-agent - INFO - Initializing with NVIDIA API
+2025-05-10 09:08:48,610 - nvidia_llm - INFO - NVIDIA LLM client initialized
+2025-05-10 09:08:48,611 - k8s-multi-agent - INFO - Successfully initialized NVIDIA API via custom wrapper
+2025-05-10 09:08:48,611 - k8s-multi-agent - INFO - LLM initialization complete. Provider: nvidia
+2025-05-10 09:08:48,611 - k8s-multi-agent - INFO - LLM initialization complete. Provider: nvidia
+2025-05-10 09:08:48,619 - k8s-multi-agent - INFO - Loaded Kubernetes config from default location
+2025-05-10 09:08:50,281 - k8s-multi-agent - INFO - Collected metrics for 18 pods in default namespace
+2025-05-10 09:08:50,284 - k8s-multi-agent - INFO - Collected metrics from 18 pods
+2025-05-10 09:08:50,285 - k8s-multi-agent - INFO - Detected anomaly in pod ai-failure-predictor-65c79ffdf9-j8x8v: crash_loop
+2025-05-10 09:08:50,285 - k8s-multi-agent - INFO - Detected anomaly in pod ai-prediction-7bc8c755c8-4rzcw: crash_loop
+2025-05-10 09:08:50,287 - k8s-multi-agent - INFO - Detected anomaly in pod ai-prediction-7bc8c755c8-gc2wm: crash_loop
+2025-05-10 09:08:50,288 - k8s-multi-agent - INFO - Detected anomaly in pod ai-prediction-7bc8c755c8-gtkjw: crash_loop
+2025-05-10 09:08:50,288 - k8s-multi-agent - INFO - Detected anomaly in pod ai-prediction-7bc8c755c8-mdxpq: crash_loop
+2025-05-10 09:08:50,289 - k8s-multi-agent - INFO - Detected anomaly in pod ai-prediction-7bc8c755c8-n9fb6: crash_loop
+2025-05-10 09:08:50,289 - k8s-multi-agent - INFO - Detected anomaly in pod crash-deployment-57b4487979-b48g4: crash_loop
+2025-05-10 09:08:50,290 - k8s-multi-agent - INFO - Detected anomaly in pod crash-deployment-57b4487979-jp9wp: crash_loop
+2025-05-10 09:08:50,290 - k8s-multi-agent - INFO - Detected anomaly in pod crash-deployment-57b4487979-pwz2t: crash_loop
+2025-05-10 09:08:50,291 - k8s-multi-agent - INFO - Detected anomaly in pod crash-deployment-57b4487979-tmjp8: crash_loop
+2025-05-10 09:08:50,291 - k8s-multi-agent - INFO - Detected anomaly in pod crash-deployment-57b4487979-z6mwh: crash_loop
+2025-05-10 09:08:50,292 - k8s-multi-agent - INFO - Detected anomaly in pod crash-test-676b6d84ff-4smds: crash_loop
+2025-05-10 09:08:50,293 - k8s-multi-agent - INFO - Detected anomaly in pod crash-test-d49656786-jvx94: crash_loop
+2025-05-10 09:08:50,294 - k8s-multi-agent - INFO - Detected anomaly in pod my-nginx-6dc8758899-zd2jk: crash_loop
+2025-05-10 09:08:50,294 - k8s-multi-agent - INFO - Detected anomaly in pod test-anomaly-deployment-7d47d87969-btddc: crash_loop
+2025-05-10 09:08:50,295 - k8s-multi-agent - INFO - Detected anomaly in pod test-anomaly-pod-6cc976976c-2hfdt: crash_loop
+2025-05-10 09:08:50,296 - k8s-multi-agent - INFO - Detected anomaly in pod test-crash-797c4d79d6-5fb98: crash_loop
+2025-05-10 09:09:10,281 - k8s-multi-agent - INFO - Shutting down Kubernetes multi-agent system.
