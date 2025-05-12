@@ -8228,3 +8228,23 @@ KeyError: 'predicted_anomaly'
 2025-05-09 22:40:14,114 - anomaly-detection-agent - INFO - Potential issue for test-anomaly-deployment-7d47d87969-btddc: probability=0.9956, recommendation: Check pod logs for error messages; Verify pod configuration and dependencies; Check node health and resource availability
 2025-05-09 22:40:14,192 - anomaly-detection-agent - INFO - Potential issue for test-anomaly-pod-6cc976976c-2hfdt: probability=0.9573, recommendation: Check pod logs for error messages; Verify pod configuration and dependencies; Check node health and resource availability
 2025-05-09 22:40:14,265 - anomaly-detection-agent - INFO - Potential issue for test-crash-797c4d79d6-5fb98: probability=0.9561, recommendation: Check pod logs for error messages; Verify pod configuration and dependencies; Check node health and resource availability
+2025-05-11 20:19:48,902 - anomaly-detection-agent - INFO - Logging configured to file: D:\kubernetes\k8s\logs\anomaly_detection_agent.log
+2025-05-11 20:20:08,863 - anomaly-detection-agent - INFO - Successfully imported anomaly_prediction from D:\kubernetes\k8s\models
+2025-05-11 20:20:08,864 - anomaly-detection-agent - INFO - Successfully imported NvidiaLLM from D:\kubernetes\k8s\src\agents\nvidia_llm.py
+2025-05-11 20:20:08,866 - anomaly-detection-agent - INFO - Initialized AnomalyDetectionAgent with alert_threshold=0.7, data_dir=D:\kubernetes\k8s\data
+2025-05-11 20:20:09,289 - anomaly-detection-agent - INFO - Model test successful: {'predicted_anomaly': 1, 'anomaly_probability': 0.9997768402099609, 'anomaly_type': 'unknown'}
+2025-05-11 20:28:39,109 - anomaly-detection-agent - INFO - Logging configured to file: D:\kubernetes\k8s\logs\anomaly_detection_agent.log
+2025-05-11 20:28:44,993 - anomaly-detection-agent - INFO - Successfully imported anomaly_prediction from D:\kubernetes\k8s\models
+2025-05-11 20:28:44,995 - anomaly-detection-agent - INFO - Successfully imported NvidiaLLM from D:\kubernetes\k8s\src\agents\nvidia_llm.py
+2025-05-11 20:28:44,996 - anomaly-detection-agent - INFO - Initialized AnomalyDetectionAgent with alert_threshold=0.7, data_dir=D:\kubernetes\k8s\data
+2025-05-11 20:28:45,343 - anomaly-detection-agent - INFO - Model test successful: {'predicted_anomaly': 1, 'anomaly_probability': 0.9997768402099609, 'anomaly_type': 'unknown'}
+2025-05-11 20:29:16,613 - anomaly-detection-agent - INFO - Logging configured to file: D:\kubernetes\k8s\logs\anomaly_detection_agent.log
+2025-05-11 20:29:21,850 - anomaly-detection-agent - INFO - Successfully imported anomaly_prediction from D:\kubernetes\k8s\models
+2025-05-11 20:29:21,851 - anomaly-detection-agent - INFO - Successfully imported NvidiaLLM from D:\kubernetes\k8s\src\agents\nvidia_llm.py
+2025-05-11 20:29:21,852 - anomaly-detection-agent - INFO - Initialized AnomalyDetectionAgent with alert_threshold=0.7, data_dir=D:\kubernetes\k8s\data
+2025-05-11 20:29:22,235 - anomaly-detection-agent - INFO - Model test successful: {'predicted_anomaly': 1, 'anomaly_probability': 0.9997768402099609, 'anomaly_type': 'unknown'}
+2025-05-11 20:44:57,772 - anomaly-detection-agent - INFO - Logging configured to file: D:\kubernetes\k8s\logs\anomaly_detection_agent.log
+2025-05-11 20:45:03,443 - anomaly-detection-agent - INFO - Successfully imported anomaly_prediction from D:\kubernetes\k8s\models
+2025-05-11 20:45:03,444 - anomaly-detection-agent - INFO - Successfully imported NvidiaLLM from D:\kubernetes\k8s\src\agents\nvidia_llm.py
+2025-05-11 20:45:03,446 - anomaly-detection-agent - INFO - Initialized AnomalyDetectionAgent with alert_threshold=0.7, data_dir=D:\kubernetes\k8s\data
+2025-05-11 20:45:03,771 - anomaly-detection-agent - INFO - Model test successful: {'predicted_anomaly': 1, 'anomaly_probability': 0.9997768402099609, 'anomaly_type': 'unknown'}
