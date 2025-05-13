@@ -1,0 +1,30 @@
+2025-05-12 18:02:49,997 - remediation-dashboard-agent - INFO - Loaded Kubernetes config from default location
+2025-05-12 18:02:49,999 - remediation-dashboard-agent - INFO - Executing remediation action 'restart_pod' for pod default/alertmanager-prometheus-kube-prometheus-alertmanager-0
+2025-05-12 18:03:00,150 - remediation-dashboard-agent - INFO - Loaded Kubernetes config from default location
+2025-05-12 18:03:00,152 - remediation-dashboard-agent - INFO - Executing remediation action 'restart_pod' for pod default/alertmanager-prometheus-kube-prometheus-alertmanager-0
+2025-05-12 18:03:05,422 - remediation-dashboard-agent - INFO - Loaded Kubernetes config from default location
+2025-05-12 18:03:05,424 - remediation-dashboard-agent - INFO - Executing remediation action 'restart_pod' for pod default/alertmanager-prometheus-kube-prometheus-alertmanager-0
+2025-05-13 13:58:23,957 - remediation-dashboard-agent - INFO - Loaded Kubernetes config from default location
+2025-05-13 13:58:23,960 - remediation-dashboard-agent - INFO - Executing remediation action 'restart_pod' for pod default/prometheus-grafana-995866d9b-42rps
+2025-05-13 13:58:34,479 - remediation-dashboard-agent - INFO - Loaded Kubernetes config from default location
+2025-05-13 13:58:34,482 - remediation-dashboard-agent - INFO - Executing remediation action 'restart_pod' for pod default/alertmanager-prometheus-kube-prometheus-alertmanager-0
+2025-05-13 13:59:03,133 - remediation-dashboard-agent - INFO - Loaded Kubernetes config from default location
+2025-05-13 13:59:03,136 - remediation-dashboard-agent - INFO - Executing remediation action 'restart_pod' for pod default/alertmanager-prometheus-kube-prometheus-alertmanager-0
+2025-05-13 13:59:51,399 - remediation-dashboard-agent - INFO - Loaded Kubernetes config from default location
+2025-05-13 13:59:51,402 - remediation-dashboard-agent - INFO - Executing remediation action 'restart_pod' for pod default/prometheus-grafana-995866d9b-42rps
+2025-05-13 14:01:13,415 - remediation-dashboard-agent - INFO - Loaded Kubernetes config from default location
+2025-05-13 14:01:13,420 - remediation-dashboard-agent - INFO - Executing remediation action 'restart_pod' for pod default/alertmanager-prometheus-kube-prometheus-alertmanager-0
+2025-05-13 14:01:22,330 - remediation-dashboard-agent - INFO - Loaded Kubernetes config from default location
+2025-05-13 14:01:22,334 - remediation-dashboard-agent - INFO - Executing remediation action 'restart_pod' for pod default/prometheus-grafana-995866d9b-42rps
+2025-05-13 14:02:31,412 - remediation-dashboard-agent - INFO - Loaded Kubernetes config from default location
+2025-05-13 14:02:31,417 - remediation-dashboard-agent - INFO - Executing remediation action 'restart_pod' for pod default/alertmanager-prometheus-kube-prometheus-alertmanager-0
+2025-05-13 14:02:53,332 - remediation-dashboard-agent - INFO - Loaded Kubernetes config from default location
+2025-05-13 14:02:53,338 - remediation-dashboard-agent - INFO - Executing remediation action 'restart_deployment' for pod default/prometheus-grafana-995866d9b-42rps
+2025-05-13 14:10:58,883 - remediation-dashboard-agent - INFO - Loaded Kubernetes config from default location
+2025-05-13 14:10:58,885 - remediation-dashboard-agent - INFO - Executing remediation action 'restart_deployment' for pod default/prometheus-grafana-995866d9b-42rps
+2025-05-13 14:11:03,345 - remediation-dashboard-agent - INFO - Loaded Kubernetes config from default location
+2025-05-13 14:11:03,347 - remediation-dashboard-agent - INFO - Executing remediation action 'restart_pod' for pod default/alertmanager-prometheus-kube-prometheus-alertmanager-0
+2025-05-13 14:23:16,778 - remediation-dashboard-agent - INFO - Loaded Kubernetes config from default location
+2025-05-13 14:23:16,780 - remediation-dashboard-agent - INFO - Executing remediation action 'restart_pod' for pod default/alertmanager-prometheus-kube-prometheus-alertmanager-0
+2025-05-13 14:23:21,798 - remediation-dashboard-agent - INFO - Loaded Kubernetes config from default location
+2025-05-13 14:23:21,800 - remediation-dashboard-agent - INFO - Executing remediation action 'restart_deployment' for pod default/prometheus-grafana-995866d9b-42rps
