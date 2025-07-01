@@ -1,4 +1,4 @@
-
+K8s
 The Kubernetes Monitoring and Remediation System is a comprehensive solution for monitoring Kubernetes clusters, detecting anomalies, and providing remediation recommendations.
 
 ### Architecture Diagram
